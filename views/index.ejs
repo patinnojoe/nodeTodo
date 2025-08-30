@@ -17,15 +17,22 @@
         <tr>
           <th scope="col" style="width: 20%">Item</th>
           <th scope="col">Description</th>
+          <th scope="col" style="width: 26%">Updated at</th>
+          <th scope="col" style="width: 26%">Created at</th>
           <th scope="col" style="width: 26%">Action</th>
         </tr>
       </thead>
       <tbody>
+        <% for(i=0; i < todos.length; i++) { %>
+
         <tr>
-          <td class="item" data-label="Item">Design landing page</td>
-          <td class="desc" data-label="Description">
-            Create hero section and pricing blocks for the new product page.
-            <span class="muted">Due: Tomorrow</span>
+          <td class="item" data-label="Item"><%= todos[i].title %></td>
+          <td class="desc" data-label="Description"><%= todos[i].desc %></td>
+          <td class="desc" data-label="updated at">
+            <%= moment(todos[i].createdAt).format("MMM Do YY, HH:MM:SS"); %>
+          </td>
+          <td class="desc" data-label="created at">
+            <%= moment(todos[i].updatedAt).format("MMM Do YY, HH:MM:SS"); %>
           </td>
           <td class="actions" data-label="Action">
             <button
@@ -42,50 +49,8 @@
             </button>
           </td>
         </tr>
-        <tr>
-          <td class="item" data-label="Item">Fix auth bug</td>
-          <td class="desc" data-label="Description">
-            Investigate login redirect loop on Safari and patch.
-            <span class="muted">Priority: High</span>
-          </td>
-          <td class="actions" data-label="Action">
-            <button
-              class="btn btn-outline btn-edit"
-              aria-label="Edit ‘Fix auth bug’"
-            >
-              Edit
-            </button>
-            <button
-              class="btn btn-outline btn-delete"
-              aria-label="Delete ‘Fix auth bug’"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td class="item" data-label="Item">Write docs</td>
-          <td class="desc" data-label="Description">
-            Add setup steps for new contributors in the README.
-            <span class="muted">Status: In Progress</span>
-          </td>
-          <td class="actions" data-label="Action">
-            <a
-              href="/update-todo"
-              class="btn btn-outline btn-edit"
-              aria-label="Edit ‘Write docs’"
-            >
-              Edit
-            </a>
-            <a
-              href="/delete-todo"
-              class="btn btn-outline btn-delete"
-              aria-label="Delete ‘Write docs’"
-            >
-              Delete
-            </a>
-          </td>
-        </tr>
+
+        <% } %>
       </tbody>
     </table>
   </div>
