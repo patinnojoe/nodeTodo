@@ -1,0 +1,93 @@
+<%- include('partials/header') %>
+<div class="wrap">
+  <div class="card" role="region" aria-label="Todo list">
+    <a
+      href="/add-todo"
+      class="btn"
+      style="
+        width: fit-content;
+        text-decoration: none;
+        border-radius: unset;
+        z-index: 1;
+      "
+      >add new todo</a
+    >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 20%">Item</th>
+          <th scope="col">Description</th>
+          <th scope="col" style="width: 26%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item" data-label="Item">Design landing page</td>
+          <td class="desc" data-label="Description">
+            Create hero section and pricing blocks for the new product page.
+            <span class="muted">Due: Tomorrow</span>
+          </td>
+          <td class="actions" data-label="Action">
+            <button
+              class="btn btn-outline btn-edit"
+              aria-label="Edit ‘Design landing page’"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-outline btn-delete"
+              aria-label="Delete ‘Design landing page’"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="item" data-label="Item">Fix auth bug</td>
+          <td class="desc" data-label="Description">
+            Investigate login redirect loop on Safari and patch.
+            <span class="muted">Priority: High</span>
+          </td>
+          <td class="actions" data-label="Action">
+            <button
+              class="btn btn-outline btn-edit"
+              aria-label="Edit ‘Fix auth bug’"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-outline btn-delete"
+              aria-label="Delete ‘Fix auth bug’"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="item" data-label="Item">Write docs</td>
+          <td class="desc" data-label="Description">
+            Add setup steps for new contributors in the README.
+            <span class="muted">Status: In Progress</span>
+          </td>
+          <td class="actions" data-label="Action">
+            <a
+              href="/update-todo"
+              class="btn btn-outline btn-edit"
+              aria-label="Edit ‘Write docs’"
+            >
+              Edit
+            </a>
+            <a
+              href="/delete-todo"
+              class="btn btn-outline btn-delete"
+              aria-label="Delete ‘Write docs’"
+            >
+              Delete
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('partials/footer') %>

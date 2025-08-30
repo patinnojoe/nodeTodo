@@ -1,0 +1,362 @@
+:root {
+  --bg: #0f172a; /* slate-900 */
+  --card: #111827; /* gray-900 */
+  --muted: #94a3b8; /* slate-400 */
+  --text: #e5e7eb; /* gray-200 */
+  --ring: #334155; /* slate-600 */
+  --row: #0b1328; /* slightly lighter than bg */
+  --accent: #22c55e; /* green-500 */
+  --accent-2: #ef4444; /* red-500 */
+  --accent-3: #3b82f6; /* blue-500 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background: radial-gradient(
+    1200px 800px at 10% 0%,
+    #111827 0%,
+    var(--bg) 55%
+  );
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.wrap {
+  max-width: 980px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 2px 0 0;
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--ring);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 14px 16px;
+  background: #0b1223;
+  border-bottom: 1px solid var(--ring);
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.table tbody tr {
+  background: var(--row);
+  transition: background 0.2s ease, transform 0.05s ease;
+}
+
+.table tbody tr + tr td {
+  border-top: 1px dashed rgba(148, 163, 184, 0.25);
+}
+
+.table tbody tr:hover {
+  background: #0f1a36;
+}
+
+.table td {
+  padding: 14px 16px;
+  vertical-align: top;
+}
+
+.item {
+  font-weight: 600;
+}
+
+.desc {
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  display: block;
+  margin-top: 2px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.06s ease, border-color 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+  outline: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-outline {
+  border-color: var(--ring);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-edit {
+  border-color: color-mix(in srgb, var(--accent-3) 60%, transparent);
+}
+.btn-edit:hover {
+  background: color-mix(in srgb, var(--accent-3) 18%, transparent);
+  border-color: var(--accent-3);
+}
+
+.btn-delete {
+  border-color: color-mix(in srgb, var(--accent-2) 60%, transparent);
+}
+.btn-delete:hover {
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
+  border-color: var(--accent-2);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--ring);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+  .table tr {
+    margin: 12px 12px;
+    border: 1px solid var(--ring);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .table td {
+    border: 0 !important;
+    padding: 12px 14px;
+  }
+  .table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.4px;
+  }
+  .actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Focus visible for accessibility */
+.btn:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+/* ✅ Add Todo button */
+.btn-add {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.btn-add:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border-color: var(--accent);
+}
+
+/* ✅ Update (Edit) button – already exists, just enhancing */
+.btn-edit {
+  border-color: color-mix(in srgb, var(--accent-3) 60%, transparent);
+}
+.btn-edit:hover {
+  background: color-mix(in srgb, var(--accent-3) 18%, transparent);
+  border-color: var(--accent-3);
+}
+
+/* ✅ Delete button – already exists, just enhancing */
+.btn-delete {
+  border-color: color-mix(in srgb, var(--accent-2) 60%, transparent);
+}
+.btn-delete:hover {
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
+  border-color: var(--accent-2);
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--ring);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-cancel {
+  background: var(--gray);
+  color: white;
+}
+.btn-cancel:hover {
+  background: var(--gray-dark);
+}
+
+.btn-confirm {
+  background: var(--red);
+  color: white;
+}
+.btn-confirm:hover {
+  background: var(--red-dark);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid var(--ring);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  outline: none;
+  margin-bottom: 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  background: #2563eb;
+}
+.btn:active {
+  transform: translateY(1px);
+}
