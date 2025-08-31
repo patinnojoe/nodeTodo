@@ -13,25 +13,23 @@
   >
   <h1>Update Todo</h1>
 
-  <form>
+  <form action="/update-todo/<%=todo.id %>" method="post">
     <div>
       <label for="item">Item</label>
       <input
         type="text"
         id="item"
-        name="item"
+        name="title"
         placeholder="Enter task name"
+        value="<%= todo.title %>"
         required
       />
     </div>
     <div>
       <label for="desc">Description</label>
-      <textarea
-        id="desc"
-        name="desc"
-        placeholder="Enter task details"
-        required
-      ></textarea>
+      <textarea id="desc" name="desc" placeholder="Enter task details" required>
+<%= todo.desc  %></textarea
+      >
     </div>
     <button type="submit" class="btn">Update</button>
   </form>

@@ -35,12 +35,13 @@
             <%= moment(todos[i].updatedAt).format("MMM Do YY, HH:MM:SS"); %>
           </td>
           <td class="actions" data-label="Action">
-            <button
+            <a
               class="btn btn-outline btn-edit"
               aria-label="Edit ‘Design landing page’"
+              href="/update-todo/?id=<%= todos[i]._id %>"
             >
               Edit
-            </button>
+            </a>
             <button
               class="btn btn-outline btn-delete"
               aria-label="Delete ‘Design landing page’"

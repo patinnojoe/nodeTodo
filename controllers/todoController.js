@@ -18,9 +18,13 @@ const addTodo = (req, res, next) => {
   }
 };
 
-const updateTodo = (req, res, next) => {
+const updateTodo = async (req, res, next) => {
   try {
-    res.render("update-todo", { title: "Update Todo" });
+    const { id } = req.query;
+
+    const todo = await Todo.findById(id);
+
+    res.render("update-todo", { title: "Update Todo", todo });
   } catch (error) {
     res.status(500).json({ errorMessage: error.message });
   }
@@ -50,11 +54,30 @@ const createTodo = async (req, res, next) => {
     res.status(500).json({ errorMessage: error.message });
   }
 };
+const postUpdateTodo = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, desc } = req.body;
+    const newTodo = await Todo.findById(id);
+    if (!newTodo) {
+      return res.status(404).send("Todo not found");
+    }
+    newTodo.title = title;
+    newTodo.desc = desc;
+
+    await newTodo.save();
+
+    res.redirect(`/`);
+  } catch (error) {
+    res.status(500).json({ errorMessage: error.message });
+  }
+};
 
 module.exports = {
   index,
   addTodo,
   updateTodo,
   deleteTodo,
-  createTodo
+  createTodo,
+  postUpdateTodo,
 };
